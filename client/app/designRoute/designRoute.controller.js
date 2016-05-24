@@ -6,7 +6,7 @@ angular.module('roofAngularMaterialDesignApp')
   	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
   	$scope.status = '';
     $scope.selectedOption = '';
-    $scope.bodyOptions
+    $scope.bodyOptions;
 
   	$scope.settings = [
   		{ name: 'header', extraScreen: 'header menu', icon: 'action:bookmark_border' },
@@ -31,7 +31,7 @@ angular.module('roofAngularMaterialDesignApp')
   			parent: angular.element(document.body),
   			targetEvent: ev,
         locals: {
-          selectedOption: $scope.selectedOption
+          selectedOption: $scope.selectedOption,
         },
   			clickOutsideToClose: true,
   			fullscreen: useFullScreen
@@ -51,6 +51,11 @@ angular.module('roofAngularMaterialDesignApp')
 
   	//Controller for the dialog
   	function DialogController($scope, $mdDialog, selectedOption){
+
+      $scope.elements = ["Channel","Paragraph"];
+      $scope.colors = ["red", "blue", "yellow", "gray", "black", "orange", "pink", "white"];
+      $scope.channel = ["Channel","Paragraph"];
+
   		$scope.hide = function(){
   			$mdDialog.hide();
   		};

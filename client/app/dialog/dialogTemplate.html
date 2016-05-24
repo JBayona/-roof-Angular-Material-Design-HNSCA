@@ -2,7 +2,7 @@
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Body</h2>
+        <h2>Content Management System: Adding the available elements</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()" aria-label="Cancel Dialog">
           <!--<md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>-->
@@ -13,28 +13,104 @@
     <md-dialog-content>
       <div class="md-dialog-content">
         <h2>Available elements</h2>
-        <md-input-container>
-        <label>State</label>
-        <md-select ng-model="ctrl.userState">
-          <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}">
-            {{state.abbrev}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-      <h2>
+
+        <div layout="column">
+          <md-input-container style="margin-right: 10px;">
+            <label>Elements</label>
+            <md-select ng-model="selectedElement">
+             <md-option ng-repeat="elem in elements" value="{{elem}}">{{elem}}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+              <label>Color</label>
+              <md-select ng-model="selectedColor">
+                <md-option ng-repeat="color in colors" value="{{color}}">{{color}}</md-option>
+              </md-select>
+          </md-input-container>
+        </div>
+
+      <!-- Channel option-->
+      <div layout="column" flex ng-if="selectedElement == 'Channel'">
+        <div flex>
+          <b>Channel Elements</b>
+        </div>
+        <div flex>
+          <!--<md-input-container style="margin-right: 10px;">
+            <label>Elements</label>
+            <md-select ng-model="channelElement">
+             <md-option ng-repeat="item in channel" value="{{item}}">{{item}}</md-option>
+            </md-select>
+          </md-input-container>-->
+          <md-card layout-padding>
+           <md-input-container class="md-block">
+            <label>Channel Title</label>
+            <input required name="channelTitle" ng-model="testing">
+              <div ng-messages="projectForm.clientName.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Channel Text</label>
+              <textarea ng-model="testing" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+            <div layout>
+              <div flex="20" layout layout-align="center center">
+                  <span class="md-body-1">Channel Size</span>
+              </div>
+              <md-slider flex class="md-primary" md-discrete ng-model="rating1" step="25" min="0" max="100" aria-label="rating"></md-slider>
+            </div>
+          </md-card>
+          </div>
+        </div>
+
+
+        <!--Paragraph option -->
+        <div layout="column" flex ng-if="selectedElement == 'Paragraph'">
+          <div flex>
+            <b>Paragraph Elements</b>
+          </div>
+          <div flex>
+            <!--<md-input-container style="margin-right: 10px;">
+              <label>Elements</label>
+              <md-select ng-model="channelElement">
+               <md-option ng-repeat="item in channel" value="{{item}}">{{item}}</md-option>
+              </md-select>
+            </md-input-container>-->
+            <md-card layout-padding>
+             <md-input-container class="md-block">
+              <label>Paragraph Title</label>
+              <input required name="paragraphTitle" ng-model="testing">
+                <div ng-messages="projectForm.clientName.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>Paragraph Text</label>
+                <textarea ng-model="testing" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+              </md-input-container>
+              <div layout>
+                <div flex="25" layout layout-align="center center">
+                    <span class="md-body-1">Paragraph Size</span>
+                </div>
+                <md-slider flex class="md-primary" md-discrete ng-model="rating1" step="25" min="0" max="100" aria-label="rating"></md-slider>
+              </div>
+            </md-card>
+            </div>
+          </div>
+
       </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+      <!--<md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
         More on Wikipedia
       </md-button>
-      <span flex></span>
+      <span flex></span>-->
       <md-button ng-click="answer('not useful')">
        Not Useful
       </md-button>
-      <md-button ng-click="answer('useful')" style="margin-right:20px;">
-        Useful
+      <md-button class="md-raised md-primary" ng-click="answer('useful')">
+        Add
       </md-button>
     </md-dialog-actions>
   </form>
