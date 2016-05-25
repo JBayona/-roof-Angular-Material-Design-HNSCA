@@ -52,9 +52,12 @@ angular.module('roofAngularMaterialDesignApp')
   	//Controller for the dialog
   	function DialogController($scope, $mdDialog, selectedOption){
 
-      $scope.elements = ["Channel","Paragraph"];
-      $scope.colors = ["red", "blue", "yellow", "gray", "black", "orange", "pink", "white"];
-      $scope.channel = ["Channel","Paragraph"];
+      $scope.elements = ['Channel','Paragraph'];
+      $scope.colors = ['red', 'blue', 'yellow', 'gray', 'black', 'orange', 'pink', 'white'];
+      $scope.channel = ['Channel','Paragraph'];
+      $scope.option = ['New Section', 'Current Section'];
+      $scope.verticalOptions = ['Start', 'Center', 'End'];
+      $scope.horizontalOptions = ['Start', 'Center', 'End'];
 
   		$scope.hide = function(){
   			$mdDialog.hide();
