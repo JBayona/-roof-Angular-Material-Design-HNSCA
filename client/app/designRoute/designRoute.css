@@ -2,6 +2,34 @@
 	background-color: #eee;
 }
 
+.red-section{
+	background-color: #cc0000;
+}
+
+.blue-section{
+	background-color: #3F51B5;
+}
+
+.yellow-section{
+	background-color: #e6e600;
+}
+
+.orange-senction{
+	background-color: #ff6600;
+}
+
+.black-section{
+	background-color: #000;
+}
+
+.pink-section{
+	background-color: #ffb3da;
+}
+
+.white-section{
+	background-color: #fff;
+}
+
 .toolbar-fixed{
 	top: 0;
     border-width: 0 0 1px;

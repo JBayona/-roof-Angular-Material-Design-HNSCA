@@ -34,6 +34,8 @@ angular.module('roofAngularMaterialDesignApp')
           selectedOption: $scope.selectedOption,
         },
   			clickOutsideToClose: true,
+        scope: $scope,        // use parent scope in template
+        //preserveScope: true,  // do not forget this if use parent scope
   			fullscreen: useFullScreen
   		})
   		.then(function(answer){
@@ -58,6 +60,7 @@ angular.module('roofAngularMaterialDesignApp')
       $scope.option = ['New Section', 'Current Section'];
       $scope.verticalOptions = ['Start', 'Center', 'End'];
       $scope.horizontalOptions = ['Start', 'Center', 'End'];
+      $scope.testing = null;
 
   		$scope.hide = function(){
   			$mdDialog.hide();
@@ -69,6 +72,39 @@ angular.module('roofAngularMaterialDesignApp')
         console.log('Option ' + selectedOption + ' was selected');
   			$mdDialog.hide(answer);
   		}
+
+      $scope.showChannelText = function(){
+        return $scope.selectedElement === 'Channel';
+      }
+
+      $scope.addElement = function(){
+        $scope.template = '';
+
+        //Start adding the desired elements;
+        if($scope.sectionSelected == 'New Section'){
+            if($scope.selectedColor){
+              $scope.template = '<div layout="row" style="background-color:' + $scope.selectedColor +'" layout-wrap layout-padding flex>' +
+              '<h1>Hello</h1></div>';
+            }
+        }else{
+            console.log('Existing section');
+        }
+
+        if($scope.selectedElement){
+          console.log("Element " + $scope.selectedElement + " selected");
+          if($scope.selectedElement == 'Channel'){
+            console.log("Channel title = " + $scope.channelTitle);
+            console.log("Channel title = " + $scope.channelText);
+            console.log("Channel title = " + $scope.channelRate);
+          }else if($scope.selectedElement == 'Paragraph'){
+            console.log("Channel title = " + $scope.paragraphTitle);
+            console.log("Channel title = " + $scope.paragraphText);
+            console.log("Channel title = " + $scope.paragraphRate);
+          }
+        }
+
+      }
+
   	}
 
   }]);

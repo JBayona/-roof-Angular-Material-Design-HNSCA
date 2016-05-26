@@ -24,7 +24,7 @@
               </md-radio-button>
             </md-radio-group>
           </md-input-container>
-          <md-input-container ng-if="sectionSelected == 'New Section'">
+          <md-input-container ng-show="sectionSelected == 'New Section'">
               <label>Color</label>
               <md-select ng-model="selectedColor">
                 <md-option ng-repeat="color in colors" value="{{color}}">{{color}}</md-option>
@@ -39,7 +39,7 @@
         </div>
 
       <!-- Channel option-->
-      <div layout="column" flex ng-if="selectedElement == 'Channel'">
+      <div layout="column" flex ng-show="showChannelText()">
         <div flex>
           <b>Channel Elements</b>
         </div>
@@ -53,20 +53,20 @@
           <md-card layout-padding>
            <md-input-container class="md-block">
             <label>Channel Title</label>
-            <input required name="channelTitle" ng-model="testing">
+            <input required name="channelTitle" ng-model="channelTitle">
               <div ng-messages="projectForm.clientName.$error">
                 <div ng-message="required">This is required.</div>
               </div>
             </md-input-container>
             <md-input-container class="md-block">
               <label>Channel Text</label>
-              <textarea ng-model="testing" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+              <textarea ng-model="channelText" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
             </md-input-container>
             <div layout>
               <div flex="20" layout layout-align="center center">
                   <span class="md-body-1">Channel Size</span>
               </div>
-              <md-slider flex class="md-primary" md-discrete ng-model="rating1" step="25" min="0" max="100" aria-label="rating"></md-slider>
+              <md-slider flex class="md-primary" md-discrete ng-model="channelRate" step="25" min="0" max="100" aria-label="rating"></md-slider>
             </div>
           </md-card>
           </div>
@@ -74,7 +74,7 @@
 
 
         <!--Paragraph option -->
-        <div layout="column" flex ng-if="selectedElement == 'Paragraph'">
+        <div layout="column" flex ng-show="selectedElement == 'Paragraph'">
           <div flex>
             <b>Paragraph Elements</b>
           </div>
@@ -88,20 +88,20 @@
             <md-card layout-padding>
              <md-input-container class="md-block">
               <label>Paragraph Title</label>
-              <input required name="paragraphTitle" ng-model="testing">
+              <input required name="paragraphTitle" ng-model="paragraphTitle">
                 <div ng-messages="projectForm.clientName.$error">
                   <div ng-message="required">This is required.</div>
                 </div>
               </md-input-container>
               <md-input-container class="md-block">
                 <label>Paragraph Text</label>
-                <textarea ng-model="testing" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+                <textarea ng-model="paragraphText" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
               </md-input-container>
               <div layout>
                 <div flex="25" layout layout-align="center center">
                     <span class="md-body-1">Paragraph Size</span>
                 </div>
-                <md-slider flex class="md-primary" md-discrete ng-model="rating1" step="25" min="0" max="100" aria-label="rating"></md-slider>
+                <md-slider flex class="md-primary" md-discrete ng-model="paragraphRate" step="25" min="0" max="100" aria-label="rating"></md-slider>
               </div>
                 <p>Horizontal Align:</p>
                 <md-radio-group ng-model="verticalAling" class="md-primary">
@@ -129,10 +129,10 @@
         More on Wikipedia
       </md-button>
       <span flex></span>-->
-      <md-button ng-click="answer('not useful')">
-       Not Useful
+      <md-button class="md-raised" ng-click="answer('not useful')">
+       Cancel
       </md-button>
-      <md-button class="md-raised md-primary" ng-click="answer('useful')">
+      <md-button class="md-raised md-primary" ng-click="addElement()">
         Add
       </md-button>
     </md-dialog-actions>
