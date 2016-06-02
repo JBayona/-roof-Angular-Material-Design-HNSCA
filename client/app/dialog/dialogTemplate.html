@@ -30,6 +30,10 @@
                 <md-option ng-repeat="color in colors" value="{{color}}">{{color}}</md-option>
               </md-select>
           </md-input-container>
+          <md-input-container ng-show="sectionSelected == 'New Section'">
+             <label>Section Name</label>
+             <input required name="section" ng-model="sectionName" id="{{sectionName}}">
+          </md-input-container>
           <md-input-container style="margin-right: 10px;">
             <label>Elements</label>
             <md-select ng-model="selectedElement">

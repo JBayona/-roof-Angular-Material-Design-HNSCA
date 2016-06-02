@@ -11,7 +11,7 @@
 	<md-sidenav class="md-whiteframe-4dp" md-component-id="left" id="popupContainer">
 		<md-toolbar layout="row" layout-align="end center">
 			<h1 class="md-toolbar-tools">Elements:</h1>
-		  	<md-button ng-click="toggleDesign()" aria-label="Close side nav option">
+		  	<md-button id="navButton" ng-click="toggleDesign()" aria-label="Close side nav option">
 					<md-icon md-svg-icon="content:clear"></md-icon>
 				</md-button>
 		</md-toolbar>
@@ -19,7 +19,7 @@
 			<md-subheader class="md-no-sticky">
 				Select the elements in the site
 			</md-subheader>
-			<md-list-item ng-repeat="setting in settings" ng-click="showDialog($event,setting.name)">
+			<md-list-item ng-repeat="setting in settings" ng-click="showDialog($event)"> <!--setting.name-->
 				<md-icon md-svg-icon="{{setting.icon}}"></md-icon>
 				<p>{{setting.name}}</p>
 			</md-list-item>
@@ -45,8 +45,9 @@
 		</md-content>
 	</md-sidenav>
 
-		<div layout="row" class="gray-section" layout-wrap layout-padding flex>
-			<div flex="33" flex-xs="" flex-gt-xs="33" layout-align="center center"> <!-- flex-xs="" flex-gt-xs="30" flex="33" layout="column" -->
+	<div id="main-content">
+		<!--<div layout="row" class="gray-section" layout-wrap layout-padding flex>
+			<div flex="33" flex-xs="" flex-gt-xs="33" layout-align="center center"> 
 	    	<md-card>
 	        <img src="assets/images/roof1.jpg" class="md-card-image" alt="Washed Out">
 	        <md-card-title>
@@ -65,11 +66,6 @@
 	            The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
 	          </p>
 	        </md-card-content>
-	        <!--<md-card-actions layout="row" layout-align="end center">
-	          <md-button>Action 1</md-button>
-	          <md-button>Action 2</md-button>
-	        </md-card-actions>
-	      </md-card>-->
 	    </div>
 	    <div flex="13" flex-xs="" flex-gt-xs="33">
 	    	<md-card>
@@ -239,7 +235,8 @@
 					A roof may also provide additional living space, for example a roof garden.
 				</p>
 	    </div>
-  	</div>
+  	</div>-->
+	</div> <!-- End main content -->
 
 </div>
 
