@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('roofAngularMaterialDesignApp')
-  .controller('DesignRouteCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$mdMedia', '$log', function ($scope,$mdSidenav,$mdDialog, $mdMedia,$log) {
+  .controller('DesignRouteCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$mdMedia', '$log', '$rootScope', function ($scope,$mdSidenav,$mdDialog, $mdMedia,$log, $rootScope) {
 
   	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
   	$scope.status = '';
     $scope.selectedOption = '';
     $scope.bodyOptions;
+    $scope.sectionId = null;
 
   	$scope.settings = [
   		{ name: 'header', extraScreen: 'header menu', icon: 'action:bookmark_border' },
@@ -19,7 +20,6 @@ angular.module('roofAngularMaterialDesignApp')
   	};
 
   	$scope.showDialog = function(ev, name){
-  		//$scope.toggleDesign();
       $scope.selectedOption = name;
 
   		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
@@ -57,8 +57,8 @@ angular.module('roofAngularMaterialDesignApp')
       $scope.colors = ['red', 'blue', 'yellow', 'gray', 'black', 'orange', 'pink', 'white'];
       $scope.channel = ['Channel','Paragraph'];
       $scope.option = ['New Section', 'Current Section'];
-      $scope.verticalOptions = ['Start', 'Center', 'End'];
-      $scope.horizontalOptions = ['Start', 'Center', 'End'];
+      $scope.verticalOptions = ['start', 'center', 'end'];
+      $scope.horizontalOptions = ['start', 'center', 'end'];
       $scope.testing = null;
 
   		$scope.hide = function(){
@@ -68,12 +68,11 @@ angular.module('roofAngularMaterialDesignApp')
   			$mdDialog.cancel();
   		};
   		$scope.answer = function(answer){
-        //console.log('Option ' + selectedOption + ' was selected');
   			$mdDialog.hide(answer);
   		}
 
       $scope.showChannelText = function(){
-        return $scope.selectedElement === 'Channel';
+        return $scope.selectedElement === 'Channel'; 
       }
 
       $scope.addElement = function(){
@@ -84,17 +83,18 @@ angular.module('roofAngularMaterialDesignApp')
         if($scope.sectionSelected == 'New Section'){
             if($scope.selectedColor){
               $scope.template = '<div layout="row" style="background-color:' + $scope.selectedColor +'" id="'+$scope.sectionName+'" layout-wrap layout-padding flex>';
+              $rootScope.sectionId = $scope.sectionName;
             }
         }else if($scope.sectionSelected == 'Current Section'){
               flag = 1;
         }
 
         if($scope.selectedElement){
-          if($scope.selectedElement == 'Channel'){
+          if($scope.selectedElement == 'Channel'){ 
             if($scope.channelRate){
               $scope.template += '<div flex="'+ $scope.channelRate +'" flex-xs="" flex-gt-xs="'+ $scope.channelRate +'" layout-align="center center">' +
                                   '<md-card>' +
-                                    '<img src="assets/images/roof1.jpg" class="md-card-image" alt="Washed Out">' +
+                                    '<img src="assets/images/roof2.jpg" class="md-card-image" alt="Washed Out">' +
                                       '<md-card-title>' +
                                         '<md-card-title-text>' + 
                                           '<span class="md-headline">'+ $scope.channelTitle +'</span>' + 
@@ -108,15 +108,22 @@ angular.module('roofAngularMaterialDesignApp')
             }
           }else if($scope.selectedElement == 'Paragraph'){
             if($scope.paragraphRate){
+              $scope.template = '<div flex="' + $scope.paragraphRate + '" flex="" flex-gt-xs="' + $scope.paragraphRate + '"  layout="column" layout-align="' + $scope.horizontalAling + ' '+ $scope.verticalAling +'"' +
+                                  '<span class="md-headline">'+ $scope.paragraphTitle +'</span>' + 
+                                  '<p>' + $scope.paragraphText + '</p>' +
+                                '</div>';
             }
             console.log("Channel title = " + $scope.paragraphTitle);
             console.log("Channel title = " + $scope.paragraphText);
             console.log("Channel title = " + $scope.paragraphRate);
+            console.log("Channel title = " + $scope.paragraphRate);
+            console.log("Channel title = " + $scope.verticalAling);
+            console.log("Channel title = " + $scope.horizontalAling);
           }
         }
 
         if(flag){
-          //concat = angular.element( document.querySelector( "#'"+$scope.sectionName+'" ));
+          concat = angular.element( document.querySelector( '#'+$rootScope.sectionId ));
           console.log($scope.sectionName);
         }else{
           concat = angular.element( document.querySelector( '#main-content' ));
