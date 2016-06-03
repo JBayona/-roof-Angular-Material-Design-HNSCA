@@ -28,7 +28,7 @@ angular.module('roofAngularMaterialDesignApp')
      }else if($scope.selectedOption === 'body'){
         showBodyDialog(event,$scope.selectedOption,useFullScreen);
      }else{
-
+        showFooterDialog(event,$scope.selectedOption,useFullScreen);
      }
   	};
 
@@ -103,7 +103,7 @@ angular.module('roofAngularMaterialDesignApp')
             if($scope.channelRate){
               $scope.template += '<div flex="'+ $scope.channelRate +'" flex-xs="" flex-gt-xs="'+ $scope.channelRate +'" layout-align="center center">' +
                                   '<md-card>' +
-                                    '<img src="assets/images/roof1.jpg" class="md-card-image" alt="Washed Out">' +
+                                    '<img src="assets/images/roof2.jpg" class="md-card-image" alt="Washed Out">' +
                                       '<md-card-title>' +
                                         '<md-card-title-text>' + 
                                           '<span class="md-headline">'+ $scope.channelTitle +'</span>' + 
@@ -117,7 +117,7 @@ angular.module('roofAngularMaterialDesignApp')
             }
           }else if($scope.selectedElement == 'Paragraph'){
             if($scope.paragraphRate){
-              $scope.template = '<div flex="' + $scope.paragraphRate + '" flex="" flex-gt-xs="' + $scope.paragraphRate + '"  layout="column" layout-align="' + $scope.horizontalAling + ' '+ $scope.verticalAling +'"' +
+              $scope.template = '<div flex="' + $scope.paragraphRate + '" flex="" flex-gt-xs="' + $scope.paragraphRate + '"  layout="column" layout-align="' + $scope.horizontalAling + ' '+ $scope.verticalAling +'" layout-padding layout-marging>' +
                                   '<span class="md-headline">'+ $scope.paragraphTitle +'</span>' + 
                                   '<p>' + $scope.paragraphText + '</p>' +
                                 '</div>';
@@ -192,7 +192,60 @@ angular.module('roofAngularMaterialDesignApp')
         console.log($scope.headerColor);
         $rootScope.theme = 'lime';
       }
+    }
 
+    function showFooterDialog(event,selectedOption,useFullScreen){
+      $mdDialog.show({
+        controller: DialogFooterController,
+        templateUrl: 'app/dialog/dialogTemplateFooter.html',
+        parent: angular.element(document.body),
+        targetEvent: event,
+        locals: {
+          selectedOption: selectedOption,
+        },
+        clickOutsideToClose: true,
+        //scope: $scope,        // use parent scope in template
+        //preserveScope: true,  // do not forget this if use parent scope
+        fullscreen: useFullScreen
+      })
+      .then(function(answer){
+        $scope.status = 'Your answer was ' + answer + '.'
+      }, function(){
+        $scope.status = 'You cancelled the dialog.'
+      });
+
+      $scope.$watch(function(){
+        return $mdMedia('xs') || $mdMedia('sm');
+      },function(wantsFullScreen){
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
+    }
+
+    function DialogFooterController($scope, $mdDialog, selectedOption){ //selectedOption
+      $scope.verticalOptions = ['start', 'center', 'end'];
+      $scope.testing = null;
+
+      $scope.hide = function(){
+        $mdDialog.hide();
+      };
+      $scope.cancel = function(){
+        $mdDialog.cancel();
+      };
+      $scope.answer = function(answer){
+        $mdDialog.hide(answer);
+      }
+      $scope.addFooterElement = function(){
+        $scope.template = '';
+        var concat = null;
+        $scope.template =  '<md-toolbar md-theme="' + $rootScope.theme + '" md-theme-watch="true" layout-padding>' +
+                            '<div layout="row" layout-align="' + $scope.footerAlign + ' center" flex>' +
+                              '<span>' + $scope.footerText + '</span>' +
+                            '</div>' +
+                           '</md-toolbar>';
+        concat = angular.element( document.querySelector( '#footerSection'));
+        concat.append($scope.template);
+        $scope.hide();
+      }
     }
 
   }]);
