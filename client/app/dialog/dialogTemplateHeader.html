@@ -1,0 +1,35 @@
+<md-dialog md-theme="{{theme}}" md-theme-watch="true" aria-label=""  ng-cloak>
+  <form>
+    <md-toolbar md-theme="{{theme}}" md-theme-watch="true">
+      <div class="md-toolbar-tools">
+        <h2>Content Management System: Adding the available elements</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="Cancel Dialog">
+          <!--<md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>-->
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h2>Available elements</h2>
+        <div layout="column">
+          <md-input-container>
+              <label>Header Color</label>
+              <md-select ng-model="headerColor">
+                <md-option ng-repeat="color in colors" value="{{color}}">{{color}}</md-option>
+              </md-select>
+          </md-input-container>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button class="md-raised" ng-click="answer('not useful')">
+       Cancel
+      </md-button>
+      <md-button class="md-raised md-primary" ng-click="addHeaderElement()">
+        Add
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

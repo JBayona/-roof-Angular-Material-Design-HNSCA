@@ -9,7 +9,7 @@ angular.module('roofAngularMaterialDesignApp', [
   'ngRoute',
   'ngMaterial'
 ])
-  .config(function($mdIconProvider) {
+  .config(function($mdIconProvider, $mdThemingProvider, $provide) {
     $mdIconProvider
       .iconSet('action', '../assets/iconsets/action-icons.svg', 24)
       .iconSet('alert', '../assets/iconsets/alert-icons.svg', 24)
@@ -28,6 +28,15 @@ angular.module('roofAngularMaterialDesignApp', [
       .iconSet('social', '../assets/iconsets/social-icons.svg', 24)
       .iconSet('toggle', '../assets/iconsets/toggle-icons.svg', 24)
       .iconSet('avatar', '../assets/iconsets/avatar-icons.svg', 128);
+
+    $mdThemingProvider.theme('lime')
+      .primaryPalette('lime')
+      .accentPalette('orange')
+      .warnPalette('blue');
+
+       // This is the absolutely vital part, without this, changes will not cascade down through the DOM.
+      $mdThemingProvider.alwaysWatchTheme(true);
+
   })
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider

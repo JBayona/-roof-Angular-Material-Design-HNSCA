@@ -19,36 +19,45 @@ angular.module('roofAngularMaterialDesignApp')
   		$mdSidenav('left').toggle();
   	};
 
-  	$scope.showDialog = function(ev, name){
-      $scope.selectedOption = name;
+  	$scope.showDialog = function(event, name){
+     $scope.selectedOption = name;
+ 		 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 
-  		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+     if($scope.selectedOption === 'header'){
+        showHeaderDialog(event,$scope.selectedOption,useFullScreen);
+     }else if($scope.selectedOption === 'body'){
+        showBodyDialog(event,$scope.selectedOption,useFullScreen);
+     }else{
 
-  		$mdDialog.show({
-  			controller: DialogController,
-  			templateUrl: 'app/dialog/dialogTemplate.html',
-  			parent: angular.element(document.body),
-  			targetEvent: ev,
+     }
+  	};
+
+    function showBodyDialog(event,selectedOption,useFullScreen){
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'app/dialog/dialogTemplate.html',
+        parent: angular.element(document.body),
+        targetEvent: event,
         locals: {
-          selectedOption: $scope.selectedOption,
+          selectedOption: selectedOption,
         },
-  			clickOutsideToClose: true,
+        clickOutsideToClose: true,
         //scope: $scope,        // use parent scope in template
         //preserveScope: true,  // do not forget this if use parent scope
-  			fullscreen: useFullScreen
-  		})
-  		.then(function(answer){
-  			$scope.status = 'Your answer was ' + answer + '.'
-  		}, function(){
-  			$scope.status = 'You cancelled the dialog.'
-  		});
+        fullscreen: useFullScreen
+      })
+      .then(function(answer){
+        $scope.status = 'Your answer was ' + answer + '.'
+      }, function(){
+        $scope.status = 'You cancelled the dialog.'
+      });
 
-  		$scope.$watch(function(){
-  			return $mdMedia('xs') || $mdMedia('sm');
-  		},function(wantsFullScreen){
-  			$scope.customFullscreen = (wantsFullScreen === true);
-  		});
-  	};	
+      $scope.$watch(function(){
+        return $mdMedia('xs') || $mdMedia('sm');
+      },function(wantsFullScreen){
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
+    }	
 
   	//Controller for the dialog
   	function DialogController($scope, $mdDialog, selectedOption){ //selectedOption
@@ -94,7 +103,7 @@ angular.module('roofAngularMaterialDesignApp')
             if($scope.channelRate){
               $scope.template += '<div flex="'+ $scope.channelRate +'" flex-xs="" flex-gt-xs="'+ $scope.channelRate +'" layout-align="center center">' +
                                   '<md-card>' +
-                                    '<img src="assets/images/roof2.jpg" class="md-card-image" alt="Washed Out">' +
+                                    '<img src="assets/images/roof1.jpg" class="md-card-image" alt="Washed Out">' +
                                       '<md-card-title>' +
                                         '<md-card-title-text>' + 
                                           '<span class="md-headline">'+ $scope.channelTitle +'</span>' + 
@@ -133,5 +142,57 @@ angular.module('roofAngularMaterialDesignApp')
       }
 
   	}
+
+    function showHeaderDialog(event,selectedOption,useFullScreen){
+      $mdDialog.show({
+        controller: DialogHeaderController,
+        templateUrl: 'app/dialog/dialogTemplateHeader.html',
+        parent: angular.element(document.body),
+        targetEvent: event,
+        locals: {
+          selectedOption: selectedOption,
+        },
+        clickOutsideToClose: true,
+        //scope: $scope,        // use parent scope in template
+        //preserveScope: true,  // do not forget this if use parent scope
+        fullscreen: useFullScreen
+      })
+      .then(function(answer){
+        $scope.status = 'Your answer was ' + answer + '.'
+      }, function(){
+        $scope.status = 'You cancelled the dialog.'
+      });
+
+      $scope.$watch(function(){
+        return $mdMedia('xs') || $mdMedia('sm');
+      },function(wantsFullScreen){
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
+    }
+
+    function DialogHeaderController($scope, $mdDialog, selectedOption){ //selectedOption
+      $scope.colors = ['red', 'blue', 'yellow', 'gray', 'black', 'orange', 'pink', 'white'];
+      $scope.verticalOptions = ['start', 'center', 'end'];
+      $scope.horizontalOptions = ['start', 'center', 'end'];
+      $scope.testing = null;
+
+      $scope.hide = function(){
+        $mdDialog.hide();
+      };
+      $scope.cancel = function(){
+        $mdDialog.cancel();
+      };
+      $scope.answer = function(answer){
+        $mdDialog.hide(answer);
+      }
+      $scope.addHeaderElement = function(){
+        var flag = 0;   
+        $scope.template = '';
+        var concat = null;
+        console.log($scope.headerColor);
+        $rootScope.theme = 'lime';
+      }
+
+    }
 
   }]);
