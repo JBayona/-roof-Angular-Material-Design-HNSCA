@@ -66,6 +66,14 @@
               <label>Channel Text</label>
               <textarea ng-model="channelText" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
             </md-input-container>
+            <div>
+              <md-button class="md-fab md-primary">
+                <label for="file-input">
+                  <md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
+                </label>
+              </md-button>
+              <input id="file-input" type="file" style="display: none; ">
+            </div>
             <div layout>
               <div flex="20" layout layout-align="center center">
                   <span class="md-body-1">Channel Size</span>
