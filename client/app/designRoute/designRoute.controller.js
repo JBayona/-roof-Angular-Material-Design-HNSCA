@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('roofAngularMaterialDesignApp')
-  .controller('DesignRouteCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$mdMedia', '$log', '$rootScope', function ($scope,$mdSidenav,$mdDialog, $mdMedia,$log, $rootScope) {
-
+  .controller('DesignRouteCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$mdMedia', '$log', '$rootScope', 'fileReader', function ($scope,$mdSidenav,$mdDialog, $mdMedia,$log, $rootScope, fileReader) {
+    console.log(fileReader)
   	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
   	$scope.status = '';
     $scope.selectedOption = '';
@@ -84,6 +84,18 @@ angular.module('roofAngularMaterialDesignApp')
         return $scope.selectedElement === 'Channel'; 
       }
 
+      $scope.getFile = function () {
+        $scope.progress = 0;
+        fileReader.readAsDataUrl($scope.file, $scope)
+          .then(function(result) {
+              $scope.imageSrc = result;
+          });
+      };
+
+      $scope.$on("fileProgress", function(e, progress) {
+        $scope.progress = progress.loaded / progress.total;
+      });
+
       $scope.addElement = function(){
         var flag = 0;   
         $scope.template = '';
@@ -103,7 +115,7 @@ angular.module('roofAngularMaterialDesignApp')
             if($scope.channelRate){
               $scope.template += '<div flex="'+ $scope.channelRate +'" flex-xs="" flex-gt-xs="'+ $scope.channelRate +'" layout-align="center center">' +
                                   '<md-card>' +
-                                    '<img src="assets/images/roof2.jpg" class="md-card-image" alt="Washed Out">' +
+                                    '<img src="'+ $scope.imageSrc +'" class="md-card-image" alt="Washed Out">' +
                                       '<md-card-title>' +
                                         '<md-card-title-text>' + 
                                           '<span class="md-headline">'+ $scope.channelTitle +'</span>' + 

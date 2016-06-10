@@ -1,7 +1,7 @@
 'use strict';
 
 (function (module) {
-    console.log('Entró automatico');
+    console.log('Automatic Enter');
     var fileReader = function ($q, $log) {
  
         var onLoad = function(reader, deferred, scope) {
@@ -40,10 +40,8 @@
  
         var readAsDataURL = function (file, scope) {
             var deferred = $q.defer();
-             
             var reader = getReader(deferred, scope);         
-            reader.readAsDataURL(file);
-             
+            reader.readAsDataURL(file);       
             return deferred.promise;
         };
  

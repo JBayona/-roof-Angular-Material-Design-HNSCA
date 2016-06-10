@@ -66,13 +66,19 @@
               <label>Channel Text</label>
               <textarea ng-model="channelText" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
             </md-input-container>
-            <div>
-              <md-button class="md-fab md-primary">
-                <label for="file-input">
-                  <md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
-                </label>
-              </md-button>
-              <input id="file-input" type="file" style="display: none; ">
+            <div layout>
+              <div flex="20">
+                <md-button class="md-fab md-primary" aria-label="select the desired picture">
+                  <label for="file-input">
+                    <md-icon md-svg-icon="image:photo"></md-icon>
+                  </label>
+                </md-button>
+                <input id="file-input" type="file" style="display: none;" ng-file-select="onFileSelect($files)">
+              </div>
+              <div layout flex="80" layout-align="start center">
+                <p>{{file.name}}</p>
+                 <!--<img ng-src="{{imageSrc}}" /><br/>-->
+              </div>
             </div>
             <div layout>
               <div flex="20" layout layout-align="center center">
