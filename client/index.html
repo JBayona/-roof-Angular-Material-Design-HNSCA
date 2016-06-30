@@ -14,6 +14,7 @@
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+      <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -22,6 +23,7 @@
       <link rel="stylesheet" href="app/app.css">
       <link rel="stylesheet" href="app/designRoute/designRoute.css">
       <link rel="stylesheet" href="app/main/main.css">
+      <link rel="stylesheet" href="app/table/table.css">
       <!-- endinjector -->
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
@@ -31,6 +33,10 @@
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+
+    <!-- style sheet -->
+    <link href="bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css"/>
+
   </head>
   <body ng-app="roofAngularMaterialDesignApp" md-theme="{{theme}}">
     <!--[if lt IE 7]>
@@ -68,8 +74,11 @@
       <script src="bower_components/angular-aria/angular-aria.js"></script>
       <script src="bower_components/angular-material/angular-material.js"></script>
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/angular-material-data-table/dist/md-data-table.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
+    <!-- module -->
+    <script type="text/javascript" src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
 
         
         <!-- build:js({.tmp,client}) app/app.js -->
@@ -84,6 +93,8 @@
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
           <script src="app/ngFileSelect/ngFileSelect.directive.js"></script>
+          <script src="app/table/table.controller.js"></script>
+          <script src="app/table/table.js"></script>
           <script src="components/shell/dialog/dialog.controller.js"></script>
           <script src="components/shell/shell.controller.js"></script>
           <!-- endinjector -->

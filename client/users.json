@@ -1,0 +1,42 @@
+{
+  "count": 6,
+  "data": [
+    {
+      "username": "jorge.bayona",
+      "firstname": "Jorge",
+      "lastname": "Bayona",
+      "mail": "jorge.bayona@gmail.com",
+      "group": "A"
+    },{
+      "username": "nery.delgado",
+      "firstname": "Nery",
+      "lastname": "Delgado",
+      "mail": "nery.delgado@gmail.com",
+      "group": "A"
+    }, {
+      "username": "ivan.bayona",
+      "firstname": "Ivan",
+      "lastname": "Bayona",
+      "mail": "ivan.bayona@gmail.com",
+      "group": "A"
+    }, {
+      "username": "amanda.hermes",
+      "firstname": "Amanda",
+      "lastname": "Hermes",
+      "mail": "amanda.hermes@gmail.com",
+      "group": "A"
+    }, {
+      "username": "raul.gonzalez",
+      "firstname": "Raul",
+      "lastname": "Gonzalez",
+      "mail": "raul.gonzalez@gmail.com",
+      "group": "B"
+    },{
+      "username": "pedro.arellano",
+      "firstname": "Pedro",
+      "lastname": "Arellano",
+      "mail": "pedro.arellano@gmail.com",
+      "group": "B"
+    }
+  ]
+}

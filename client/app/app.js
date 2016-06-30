@@ -7,7 +7,8 @@ angular.module('roofAngularMaterialDesignApp', [
   'ngAnimate',
   'ngMessages',
   'ngRoute',
-  'ngMaterial'
+  'ngMaterial',
+  'md.data.table'
 ])
   .config(function($mdIconProvider, $mdThemingProvider, $provide) {
     $mdIconProvider
